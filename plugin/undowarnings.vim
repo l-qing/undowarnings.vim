@@ -36,6 +36,11 @@ function! VerifyUndo ()
         return 'u'
     endif
 
+    " 使用`vi`打开一个buffer时未触发上面的`Rememberundo_start`
+    if !exists('b:undo_start')
+        return 'u'
+    endif
+
     " Are we back at the start of this session (but still with undos possible)???
     let undo_now = undotree().seq_cur
 
